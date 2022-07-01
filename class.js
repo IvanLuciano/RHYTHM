@@ -3,10 +3,15 @@ class Run {
     //position
     this.x = windowWidth;
     this.y = windowHeight;
-    //color
-    this.colors = [color('#ff0099'), color('#f3f315'), color('#83f52c'), color('#ff6600'), color('#6e0dd0'), color('#01fff4')]; //color list
-    this.rColorSelec = this.colors[round(random(0, 5))];
-    this.colorSpeed = 25; // color change speed
+    //color changer
+    //this.colors = [color('#ff0099'), color('#f3f315'), color('#83f52c'), color('#ff6600'), color('#6e0dd0'), color('#01fff4')]; //color list
+    //this.rColorSelec = this.colors[round(random(0, 5))];
+    this.colorSpeed = 10; // color change speed
+    //colors
+    this.cyan = color('#01fff4');
+    this.pink = color('#ff0099');
+    this.colorspc = [color('#ff0099'), color('#01fff4')];
+    this.rColorSelec = this.colorspc[round(random(0, 1))];
     //vars
     this.borders = 8;
     //person count array
@@ -22,8 +27,8 @@ class Run {
   }
 
   execute() {
-    this.exevars();
     background(0, 0, 25);
+    this.exevars();
 
     this.draw();
     this.func();
@@ -31,7 +36,7 @@ class Run {
 
   exevars() { //repeat vars in frameRate
     if (frameCount % this.colorSpeed == 0) {
-      this.rColorSelec = this.colors[round(random(0, 4))]; //random color picker
+      this.rColorSelec = this.colorspc[round(random(0, 1))]; //random color picker
     }
   }
 
@@ -58,9 +63,10 @@ class Run {
     push();
     rectMode(CORNERS);
     strokeWeight(this.borders);
-    stroke(this.rColorSelec);
+    stroke(this.pink);
     fill(0, 0, 25)
     rect(0 + this.borders / 2, 0 + this.borders / 2, this.x - this.borders / 2, this.y - this.borders / 2);
+    stroke(this.cyan);
     rect(35, 85, this.x - 35, this.y - 35);
     pop();
 
